@@ -60,7 +60,7 @@ function renderWeatherCard(country, weather) {
     </article>`;
 }
 
-// weather can be null when the weather service fails; the country facts still show.
+
 export function renderDestination(country, weather, isFavorite) {
   const name = country.name?.common || "Unknown country";
   const capital = country.capital?.[0] || "Capital unavailable";

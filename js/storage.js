@@ -14,7 +14,7 @@ function writeList(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    // Storage can be blocked (private mode) or full; the app still works without it.
+    
   }
 }
 
@@ -50,6 +50,6 @@ export function clearHistory() {
   try {
     localStorage.removeItem(HISTORY_KEY);
   } catch {
-    // Nothing to clear if storage is unavailable.
+    
   }
 }

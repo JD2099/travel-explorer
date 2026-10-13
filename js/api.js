@@ -26,8 +26,6 @@ async function fetchJson(url) {
   return response.json();
 }
 
-// Calls the REST Countries v5 API and returns the list of country objects.
-// A 404 means "no matches", so it returns an empty list instead of throwing.
 async function fetchCountries(path) {
   if (!RESTCOUNTRIES_API_KEY || RESTCOUNTRIES_API_KEY.startsWith("PASTE_")) {
     throw new Error("Missing API key. Add your REST Countries key in js/config.js.");
@@ -64,7 +62,6 @@ function readCoordinates(coordinates) {
     : null;
 }
 
-// Converts the v5 response shape into the simple shape the rest of the app uses.
 function normalizeCountry(raw) {
   const capitals = Array.isArray(raw.capitals) ? raw.capitals : [];
   const mainCapital = capitals.find((item) => item?.attributes?.primary) || capitals[0];
@@ -90,13 +87,11 @@ function pickBestMatch(countries, searchTerm) {
     country.name.common.toLowerCase() === term || country.name.official.toLowerCase() === term
   );
   if (exact) return exact;
-  // For partial matches (e.g. "united"), prefer the most populous country.
   return [...countries].sort((a, b) => b.population - a.population)[0];
 }
 
 export async function getCountry(searchTerm) {
   const query = encodeURIComponent(searchTerm.trim());
-  // Try an exact name first so "Niger" does not return "Nigeria".
   let data = await fetchCountries(`/names.common/${query}?response_fields=${RESPONSE_FIELDS}`);
   if (data.length === 0) {
     data = await fetchCountries(`/name?q=${query}&limit=25&response_fields=${RESPONSE_FIELDS}`);
@@ -108,7 +103,6 @@ export async function getCountry(searchTerm) {
 }
 
 export async function getRandomCountry() {
-  // Ask for one country at a random position instead of downloading the whole list.
   for (let attempt = 0; attempt < 6; attempt += 1) {
     const offset = Math.floor(Math.random() * ESTIMATED_COUNTRY_COUNT);
     const [country] = await fetchCountries(`?limit=1&offset=${offset}&response_fields=${RESPONSE_FIELDS}`);
@@ -119,7 +113,6 @@ export async function getRandomCountry() {
 
 async function getCapitalPlace(country) {
   const capital = country.capital[0];
-  // REST Countries usually provides capital coordinates already.
   if (country.capitalCoordinates) {
     return { name: capital, country: country.name.common, ...country.capitalCoordinates };
   }

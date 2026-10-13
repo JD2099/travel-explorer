@@ -18,8 +18,7 @@ function isFavorite(country) {
   return getFavorites().some((item) => item.cca3 === country.cca3);
 }
 
-// Loads a country plus its capital weather. Only the newest request may update the page,
-// so a slow earlier search can never overwrite a newer one.
+
 async function loadDestination(fetchCountryData) {
   const requestId = ++latestRequest;
   showLoading();
