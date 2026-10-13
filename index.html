@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore countries around the world and check current weather in their capitals with Travel Explorer.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Travel Explorer | Discover your next destination</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Travel Explorer home"><span aria-hidden="true">🌎</span> Travel Explorer</a>
+    <nav aria-label="Main navigation">
+      <a href="#explore">Explore</a>
+      <a href="#favorites">Favorites <span id="favorite-count" class="count">0</span></a>
+      <a href="#history">History</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="explore">
+      <p class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</p>
+      <h1>Explore the world,<br><span>one country at a time.</span></h1>
+      <p class="hero-copy">Discover useful country facts and current weather for its capital city.</p>
+      <form id="search-form" class="search-form">
+        <label class="sr-only" for="country-search">Search for a country</label>
+        <input id="country-search" name="country" type="search" placeholder="Try Peru, Japan, or Canada" autocomplete="off" required>
+        <button type="submit">Search</button>
+      </form>
+      <button id="surprise-button" class="button button-secondary" type="button">✦ Surprise me</button>
+    </section>
+
+    <section class="content-section" aria-labelledby="result-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">DESTINATION DETAILS</p><h2 id="result-heading">Your discovery</h2></div>
+        <p id="status" class="status" role="status" aria-live="polite">Search for a country to get started.</p>
+      </div>
+      <div id="result" class="result-grid">
+        <div class="empty-state"><span aria-hidden="true">🧭</span><h3>Where will you go?</h3><p>Your country details and capital weather will appear here.</p></div>
+      </div>
+    </section>
+
+    <section class="content-section" id="favorites" aria-labelledby="favorites-heading">
+      <div class="section-heading"><div><p class="eyebrow">SAVED FOR LATER</p><h2 id="favorites-heading">Favorite destinations</h2></div></div>
+      <div id="favorites-list" class="mini-grid"><p class="muted">You haven't saved any favorites yet.</p></div>
+    </section>
+
+    <section class="content-section" id="history" aria-labelledby="history-heading">
+      <div class="section-heading"><div><p class="eyebrow">RECENT DISCOVERIES</p><h2 id="history-heading">Search history</h2></div><button id="clear-history" class="text-button" type="button">Clear history</button></div>
+      <div id="history-list" class="history-list"><p class="muted">Your recent searches will appear here.</p></div>
+    </section>
+  </main>
+
+  <footer><p>Travel Explorer · Built with HTML, CSS, and vanilla JavaScript.</p><p>Country data: REST Countries · Weather data: Open-Meteo</p></footer>
+
+  <script>
+    // ES modules are blocked when a page is opened by double-clicking the file (file://).
+    if (location.protocol === "file:") {
+      var warning = document.createElement("div");
+      warning.className = "file-warning";
+      warning.setAttribute("role", "alert");
+      warning.textContent = "This app must run from a local server (not by double-clicking index.html). Use VS Code Live Server or run: python -m http.server 8000, then open http://localhost:8000";
+      document.body.insertBefore(warning, document.body.firstChild);
+    }
+  </script>
+</body>
+</html>

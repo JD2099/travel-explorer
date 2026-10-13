@@ -1,0 +1,14 @@
+{
+  "name": "travel-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A vanilla JavaScript country and capital weather explorer",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  },
+  "scripts": {
+    "lint": "eslint js",
+    "start": "npx --yes serve ."
+  }
+}
